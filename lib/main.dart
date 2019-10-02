@@ -23,14 +23,13 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
-//  AudioPlayer audioPlayer = AudioPlayer();
+  AudioPlayer audioPlayer = AudioPlayer();
 
 
   IjkMediaController controller = IjkMediaController();
 
 
-
-  String imageAlbum = "https://www.bigmenu.com.br/arquivos/1232/conteudo/posts/494988.jpg?1480332912";
+  String imageAlbum = "https://macmagazine.uol.com.br/wp-content/uploads/2019/03/11-Dale-Reggaeton-playlist.jpg";
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
 
@@ -66,7 +65,7 @@ class _HomeState extends State<Home>{
     super.dispose();
   }
 
-//
+
 //  play() async {
 //    int result = await audioPlayer.play(urlAudio);
 //    if (result == 1) {
@@ -95,6 +94,9 @@ class _HomeState extends State<Home>{
       proximaMusica = jsonResponse['next']['name'];
      tempoMusicaAtual = jsonResponse['current']['starts'];
      tempoMusicaSeguinte = jsonResponse ['next']['starts'];
+     titulo = jsonResponse['currentShow'][0]['name'];
+
+     print(titulo);
 
 
     }
@@ -150,7 +152,7 @@ class _HomeState extends State<Home>{
                     children: <Widget>[
                       SizedBox(
                         height: 10,),
-                      Text('Pop Rock Nacional',
+                      Text('$titulo',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
                       Spacer(),
                       Center(
@@ -194,7 +196,7 @@ class _HomeState extends State<Home>{
                               SizedBox(height: 32,),
 
 
-
+//
 //                              Container(
 //                                  decoration: BoxDecoration(
 //                                    color:Colors.white,
@@ -216,7 +218,7 @@ class _HomeState extends State<Home>{
                                   ),
                                   child: FlatButton(
                                     child: Icon(Icons.play_arrow, color: blueColor, size: 60),
-                                    onPressed:()async{
+                                    onPressed:() async {
                                     await controller.setNetworkDataSource(urlAudio,autoPlay: true);
                                     controller.playOrPause();
                                     },
