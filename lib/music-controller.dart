@@ -14,7 +14,7 @@ import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
 
 class MusicController extends BlocBase {
 
-  String imageAlbum = "https://i.pinimg.com/originals/3b/bf/6c/3bbf6cdeff907157428570daa474e171.jpg";
+  String imageAlbum = "https://www.cmuse.org/wp-content/uploads/2019/05/classical-vs-jazz-music.jpg";
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
 

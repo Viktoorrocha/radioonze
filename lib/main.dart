@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:radioonze/info.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
 
 
@@ -23,19 +22,16 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
-  AudioPlayer audioPlayer = AudioPlayer();
-
-
   IjkMediaController controller = IjkMediaController();
 
 
-  String imageAlbum = "https://macmagazine.uol.com.br/wp-content/uploads/2019/03/11-Dale-Reggaeton-playlist.jpg";
+  String imageAlbum = "https://i.ytimg.com/vi/L7GvLxO4Wj8/hqdefault.jpg";
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
 
 
 
-  var urlAudio = "http://radio.trt11.jus.br:8000/radiotrt11";
+//  var urlAudio = "http://radio.trt11.jus.br:8000/radiotrt11";
   var urlMusic = "http://radio.trt11.jus.br:8443/api/live-info/";
 
   String musicaAtual = "";
@@ -47,17 +43,11 @@ class _HomeState extends State<Home>{
 
 
   @override
-  void initState() {
-    super.initState();
-    setState(() {
-//
-//      play();
-//      pause();
-      StartRadio();
-    });
+  void initState()  {
 
+  super.initState();
+     StartRadio();
   }
-
 
   @override
   void dispose() {
@@ -66,20 +56,6 @@ class _HomeState extends State<Home>{
   }
 
 
-//  play() async {
-//    int result = await audioPlayer.play(urlAudio);
-//    if (result == 1) {
-//      // success
-//    }
-//  }
-//
-//
-//  pause() async {
-//    int result = await audioPlayer.pause();
-//    if (result == 0) {
-//      // success
-//    }
-//  }
 
 
 
@@ -159,9 +135,11 @@ class _HomeState extends State<Home>{
                         child: Text("$musicaAtual", style: TextStyle(color: Colors.white,
                             fontSize: 22),),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height:15,),
 
-                      Center(child: Text("Proxima Música : $proximaMusica", style: TextStyle(color: Colors.white,fontSize: 18),)),
+                      Center(child: Text("Proxima Música \n", style: TextStyle(color: Colors.white,fontSize: 18),)),
+
+                      Center(child: Text("$proximaMusica", style: TextStyle(color: Colors.white,fontSize: 18),)),
                       SizedBox(
                           height: 10
                       ),
@@ -186,7 +164,7 @@ class _HomeState extends State<Home>{
 //                              ],
 //                            ),
                           ),
-                          SizedBox(height: 35),
+                          SizedBox(height: 25),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
@@ -195,33 +173,26 @@ class _HomeState extends State<Home>{
                                 size: 45,),
                               SizedBox(height: 32,),
 
-
-//
-//                              Container(
-//                                  decoration: BoxDecoration(
-//                                    color:Colors.white,
-//                                    shape: BoxShape.circle,
-//                                  ),
-//                                  child: FlatButton(
-//                                    child: Icon(Icons.pause, color: blueColor, size: 60),
-//                                    onPressed: (){
-//                                      pause();
-//                                    },
-//
-//                                  )),
-
-
                               Container(
                                   decoration: BoxDecoration(
                                     color:Colors.white,
                                     shape: BoxShape.circle,
                                   ),
                                   child: FlatButton(
-                                    child: Icon(Icons.play_arrow, color: blueColor, size: 60),
-                                    onPressed:() async {
-                                    await controller.setNetworkDataSource(urlAudio,autoPlay: true);
-                                    controller.playOrPause();
+                                    onPressed:()  {
+                                        setState(() async {
+                                            if(controller.isPlaying){
+                                              controller.pause();
+                                            } else {
+                                              controller.play();
+                                               controller.setNetworkDataSource("http://radio.trt11.jus.br:8000/radiotrt11",
+                                                  autoPlay: true);
+                                            }
+                                        });
                                     },
+
+                                  child: Icon(
+                                    controller.isPlaying ? Icons.pause : Icons.play_arrow, color: blueColor, size: 60,),
 
                                   )),
 
