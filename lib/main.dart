@@ -23,17 +23,19 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
+  
 
 
-  String imageAlbum = "https://i.ytimg.com/vi/L7GvLxO4Wj8/hqdefault.jpg";
+
+  String imageAlbum = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
 
 
 
-//  var urlAudio = "http://radio.trt11.jus.br:8000/radiotrt11";
+  var urlAudio = "http://radio.trt11.jus.br:8000/radiotrt11";
   var urlMusic = "http://radio.trt11.jus.br:8443/api/live-info/";
-
+  var isPlaying;
   String musicaAtual = "";
   String proximaMusica = "";
   var tempoMusicaAtual;
@@ -124,6 +126,7 @@ class _HomeState extends State<Home>{
                     ),
 
                   ),
+
                   Column(
                     children: <Widget>[
                       SizedBox(
@@ -131,6 +134,8 @@ class _HomeState extends State<Home>{
                       Text('$titulo',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
                       Spacer(),
+
+
                       Center(
                         child: Text("$musicaAtual", style: TextStyle(color: Colors.white,
                             fontSize: 22),),
@@ -180,18 +185,20 @@ class _HomeState extends State<Home>{
                                   ),
                                   child: FlatButton(
                                     onPressed:()  {
-                                        setState(() async {
+                                        setState(() {
                                             if(controller.isPlaying){
                                               controller.pause();
                                             } else {
                                               controller.play();
-                                               controller.setNetworkDataSource("http://radio.trt11.jus.br:8000/radiotrt11",
+                                              controller.setNetworkDataSource("http://radio.trt11.jus.br:8000/radiotrt11",
                                                   autoPlay: true);
                                             }
                                         });
+
+
                                     },
 
-                                  child: Icon(
+                                  child:Icon(
                                     controller.isPlaying ? Icons.pause : Icons.play_arrow, color: blueColor, size: 60,),
 
                                   )),
