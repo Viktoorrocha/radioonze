@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:radioonze/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:radioonze/MusicState.dart';
 import 'package:radioonze/info.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
@@ -23,11 +24,16 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
-  
 
+  StreamController<String> controllerMusic;
 
-
+  String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
+  String capaJazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
+  String capaReggaeton = "https://img.vagalume.fm/1528731816330561/bg-low";
+  String capaPopRocknacional = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
   String imageAlbum = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
+
+
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
 
@@ -48,12 +54,15 @@ class _HomeState extends State<Home>{
   void initState()  {
 
   super.initState();
+  controllerMusic = StreamController.broadcast();
      StartRadio();
+
   }
 
   @override
   void dispose() {
     controller.dispose();
+    controllerMusic.close();
     super.dispose();
   }
 
@@ -73,17 +82,9 @@ class _HomeState extends State<Home>{
      tempoMusicaAtual = jsonResponse['current']['starts'];
      tempoMusicaSeguinte = jsonResponse ['next']['starts'];
      titulo = jsonResponse['currentShow'][0]['name'];
-
-     print(titulo);
-
-
     }
 
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -164,54 +165,67 @@ class _HomeState extends State<Home>{
 //                                ),
 //                                Text('-03:56',
 //                                    style: TextStyle(color: Colors.white.withOpacity(0.7))),
-//
-//
 //                              ],
 //                            ),
                           ),
                           SizedBox(height: 25),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Column(
                             children: <Widget>[
-                              Icon(Icons.volume_down,
-                                color: Colors.white,
-                                size: 45,),
-                              SizedBox(height: 32,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
 
-                              Container(
-                                  decoration: BoxDecoration(
-                                    color:Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: FlatButton(
-                                    onPressed:()  {
-                                        setState(() {
-                                            if(controller.isPlaying){
-                                              controller.pause();
-                                            } else {
-                                              controller.play();
-                                              controller.setNetworkDataSource("http://radio.trt11.jus.br:8000/radiotrt11",
-                                                  autoPlay: true);
-                                            }
-                                        });
-
-
+                                  FlatButton(
+                                    onPressed: (){
+                                      print("Estou diminuindo o volume");
                                     },
+                                    child: Icon(Icons.remove_circle,
+                                      color: Colors.white,
+                                      size: 45,),
+                                  ),
+                                  SizedBox(height: 45,),
 
-                                  child:Icon(
-                                    controller.isPlaying ? Icons.pause : Icons.play_arrow, color: blueColor, size: 60,),
+                                  Container(
+                                      decoration: BoxDecoration(
+                                        color:Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: FlatButton(
+                                        onPressed:()  {
+                                            setState(() {
+                                                if(controller.isPlaying){
+                                                  controller.pause();
+                                                } else {
+                                                  controller.play();
+                                                  controller.setNetworkDataSource("http://radio.trt11.jus.br:8000/radiotrt11",
+                                                      autoPlay: true);
+                                                }
+                                            });
 
-                                  )),
+
+                                        },
+
+                                      child:Icon(
+                                        controller.isPlaying ? Icons.pause : Icons.play_arrow, color: blueColor, size: 60,),
+
+                                      )),
 
 
 
 
 
 
-                              SizedBox(height: 32,),
-                              Icon(Icons.volume_up,
-                                color: Colors.white,
-                                size: 45,)
+                                  SizedBox(height: 45,),
+                                  FlatButton(
+                                    onPressed: (){
+                                      print("Estou aumentando o volume");
+                                    },
+                                    child: Icon(Icons.add_circle,
+                                      color: Colors.white,
+                                      size: 45,),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
 
