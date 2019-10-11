@@ -25,7 +25,7 @@ class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
 
-  StreamController<String> controllerMusic;
+
 
   String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
   String capaJazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
@@ -54,7 +54,7 @@ class _HomeState extends State<Home>{
   void initState()  {
 
   super.initState();
-  controllerMusic = StreamController.broadcast();
+
      StartRadio();
 
   }
@@ -62,7 +62,7 @@ class _HomeState extends State<Home>{
   @override
   void dispose() {
     controller.dispose();
-    controllerMusic.close();
+
     super.dispose();
   }
 
@@ -156,17 +156,6 @@ class _HomeState extends State<Home>{
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-//                            child: Row(
-//                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                              children: <Widget>[
-//                                Text(
-//                                  '2:10',
-//                                  style: TextStyle(color: Colors.white.withOpacity(0.7)),
-//                                ),
-//                                Text('-03:56',
-//                                    style: TextStyle(color: Colors.white.withOpacity(0.7))),
-//                              ],
-//                            ),
                           ),
                           SizedBox(height: 25),
                           Column(
