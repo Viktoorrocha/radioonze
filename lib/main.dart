@@ -28,11 +28,8 @@ class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
 
-<<<<<<< HEAD
-=======
 
->>>>>>> c0312a78777a995bf96b5a8880d9812928c3c667
-
+    Timer timer;
 
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
   String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
@@ -72,10 +69,7 @@ class _HomeState extends State<Home>{
   @override
   void dispose() {
     controller.dispose();
-<<<<<<< HEAD
-=======
 
->>>>>>> c0312a78777a995bf96b5a8880d9812928c3c667
     super.dispose();
   }
 
