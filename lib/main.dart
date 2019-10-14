@@ -2,11 +2,12 @@ import 'dart:async';
 import 'package:radioonze/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:radioonze/MusicState.dart';
+import 'package:radioonze/MusicBloc.dart';
 import 'package:radioonze/info.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
+import 'package:rxdart/rxdart.dart';
 
 
 
@@ -22,16 +23,21 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home>{
+//
+//  Music bloc = Music();
 
   IjkMediaController controller = IjkMediaController();
 
-  StreamController<String> controllerMusic;
 
+
+  String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
   String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
   String capaJazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
   String capaReggaeton = "https://img.vagalume.fm/1528731816330561/bg-low";
   String capaPopRocknacional = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
-  String imageAlbum = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
+
+  String imageAlbum = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
+
 
 
   var blueColor = Color(0xFF090e42);
@@ -54,7 +60,7 @@ class _HomeState extends State<Home>{
   void initState()  {
 
   super.initState();
-  controllerMusic = StreamController.broadcast();
+
      StartRadio();
 
   }
@@ -62,29 +68,9 @@ class _HomeState extends State<Home>{
   @override
   void dispose() {
     controller.dispose();
-    controllerMusic.close();
     super.dispose();
   }
 
-
-
-
-
-
-  Future StartRadio() async {
-
-
-    var response = await http.get(urlMusic);
-    if(response.statusCode == 200){
-    var jsonResponse = convert.jsonDecode(response.body);
-      musicaAtual = jsonResponse['current']['name'];
-      proximaMusica = jsonResponse['next']['name'];
-     tempoMusicaAtual = jsonResponse['current']['starts'];
-     tempoMusicaSeguinte = jsonResponse ['next']['starts'];
-     titulo = jsonResponse['currentShow'][0]['name'];
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +124,9 @@ class _HomeState extends State<Home>{
 
 
                       Center(
-                        child: Text("$musicaAtual", style: TextStyle(color: Colors.white,
-                            fontSize: 22),),
+                        child:
+                             Text("$musicaAtual", style: TextStyle(color: Colors.white,
+                                fontSize: 22),),
                       ),
                       SizedBox(height:15,),
 
@@ -244,6 +231,24 @@ class _HomeState extends State<Home>{
       ),
     );
   }
+
+
+
+  Future StartRadio() async {
+
+    var response = await http.get(urlMusic);
+    if(response.statusCode == 200){
+      var jsonResponse = convert.jsonDecode(response.body);
+      musicaAtual = jsonResponse['current']['name'];
+      proximaMusica = jsonResponse['next']['name'];
+      titulo = jsonResponse['currentShow'][0]['name'];
+
+      print(musicaAtual);
+      print(proximaMusica);
+      print(titulo);
+    }
+  }
+
 }
 
 
