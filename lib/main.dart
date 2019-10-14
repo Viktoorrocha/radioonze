@@ -28,6 +28,10 @@ class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0312a78777a995bf96b5a8880d9812928c3c667
 
 
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
@@ -68,6 +72,10 @@ class _HomeState extends State<Home>{
   @override
   void dispose() {
     controller.dispose();
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0312a78777a995bf96b5a8880d9812928c3c667
     super.dispose();
   }
 
@@ -143,17 +151,6 @@ class _HomeState extends State<Home>{
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-//                            child: Row(
-//                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                              children: <Widget>[
-//                                Text(
-//                                  '2:10',
-//                                  style: TextStyle(color: Colors.white.withOpacity(0.7)),
-//                                ),
-//                                Text('-03:56',
-//                                    style: TextStyle(color: Colors.white.withOpacity(0.7))),
-//                              ],
-//                            ),
                           ),
                           SizedBox(height: 25),
                           Column(

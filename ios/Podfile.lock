@@ -1,40 +1,28 @@
 PODS:
-  - audioplayers (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - flutter_ijkplayer (0.0.1):
     - Flutter
     - FlutterIJK (~> 0.1.0)
   - FlutterIJK (0.1.0)
-  - path_provider (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
-  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_ijkplayer (from `.symlinks/plugins/flutter_ijkplayer/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FlutterIJK
 
 EXTERNAL SOURCES:
-  audioplayers:
-    :path: ".symlinks/plugins/audioplayers/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_ijkplayer:
     :path: ".symlinks/plugins/flutter_ijkplayer/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
 
 SPEC CHECKSUMS:
-  audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_ijkplayer: ef9006131553deb6d8ae6d7fbd3bcbf93b135930
   FlutterIJK: 68b00c1d11162b5016f3611853aa699e198bd1d2
-  path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
 
 PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
 
