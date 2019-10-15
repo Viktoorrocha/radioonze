@@ -7,7 +7,7 @@ import 'package:radioonze/info.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
-import 'package:rxdart/rxdart.dart';
+
 
 
 
@@ -32,12 +32,15 @@ class _HomeState extends State<Home>{
 
 
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
-  String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
-  String capaJazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
-  String capaReggaeton = "https://img.vagalume.fm/1528731816330561/bg-low";
+  String Samba11 = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
+  String Jazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
+  String bailandoReggeton = "https://img.vagalume.fm/1528731816330561/bg-low";
   String capaPopRocknacional = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
 
-  String imageAlbum = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
+  String imageAlbum = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
+
+
+
 
 
 
@@ -59,13 +62,11 @@ class _HomeState extends State<Home>{
 
     StartRadio();
 
-    Timer.periodic(Duration(seconds: 30), (timer) {
+    Timer.periodic(Duration(seconds:20), (timer) {
       StartRadio();
     });
 
   super.initState();
-
-
 
   }
 
@@ -225,6 +226,10 @@ class _HomeState extends State<Home>{
 
 
 
+
+
+
+
   Future StartRadio() async {
 
     var response = await http.get(urlMusic);
@@ -234,7 +239,7 @@ class _HomeState extends State<Home>{
         musicaAtual = jsonResponse['current']['name'];
         proximaMusica = jsonResponse['next']['name'];
         titulo = jsonResponse['currentShow'][0]['name'];
-        print("Atualizei");
+        print("ATUALIZADO!!!!");
       });
     }
   }
