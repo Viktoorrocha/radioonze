@@ -51,18 +51,21 @@ class _HomeState extends State<Home>{
   var isPlaying;
   String musicaAtual = "";
   String proximaMusica = "";
-  var tempoMusicaAtual;
-  var tempoMusicaSeguinte;
-  var musicaAux;
   String titulo= "";
 
 
   @override
   void initState()  {
 
+    StartRadio();
+
+    Timer.periodic(Duration(seconds: 30), (timer) {
+      StartRadio();
+    });
+
   super.initState();
 
-     StartRadio();
+
 
   }
 
@@ -218,6 +221,9 @@ class _HomeState extends State<Home>{
       ),
     );
   }
+
+
+
 
   Future StartRadio() async {
 
