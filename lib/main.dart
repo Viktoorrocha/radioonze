@@ -23,13 +23,13 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home>{
-//
-//  Music bloc = Music();
+
 
   IjkMediaController controller = IjkMediaController();
 
 
     Timer timer;
+
 
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
   String capaSamba = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
@@ -189,10 +189,6 @@ class _HomeState extends State<Home>{
                                       )),
 
 
-
-
-
-
                                   SizedBox(height: 45,),
                                   FlatButton(
                                     onPressed: (){
@@ -223,20 +219,17 @@ class _HomeState extends State<Home>{
     );
   }
 
-
-
   Future StartRadio() async {
 
     var response = await http.get(urlMusic);
     if(response.statusCode == 200){
       var jsonResponse = convert.jsonDecode(response.body);
-      musicaAtual = jsonResponse['current']['name'];
-      proximaMusica = jsonResponse['next']['name'];
-      titulo = jsonResponse['currentShow'][0]['name'];
-
-      print(musicaAtual);
-      print(proximaMusica);
-      print(titulo);
+      setState(() {
+        musicaAtual = jsonResponse['current']['name'];
+        proximaMusica = jsonResponse['next']['name'];
+        titulo = jsonResponse['currentShow'][0]['name'];
+        print("Atualizei");
+      });
     }
   }
 
