@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:core' as prefix0;
+import 'dart:core';
 import 'package:radioonze/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,24 +32,25 @@ class _HomeState extends State<Home>{
 
     Timer timer;
 
-
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
-  String Samba11 = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
+  String Samba11 = "http://flinksampa.com.br/wp-content/uploads/2017/09/sambaaaa.jpg";
   String Jazz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoaQzbwVCIzSgeas4KY-h5PVJxToCjQnr_SCDlTAABBJKbMdF";
   String bailandoReggeton = "https://img.vagalume.fm/1528731816330561/bg-low";
   String capaPopRocknacional = "https://www.ultimasnoticias.inf.br/wp-content/uploads/2018/10/pop-2.jpg";
+  String rockInternacional = "https://direct.rhapsody.com/imageserver/images/imgs.157617893/500x500.jpg";
+  String corujao = "https://66.media.tumblr.com/tumblr_m7pde8iONC1rc7ynmo1_400.jpg";
+  String manhacomDeus = "https://data.whicdn.com/images/229271067/original.jpg";
+  String oMelhordoRock = "https://66.media.tumblr.com/bdd9d707ad326490b6eb6aceaa2e8acc/tumblr_p21qdtny2Z1w2njpno5_250.png";
+  String miscelania = "https://www.wradio.com.co/images/3887724_n_imgg.jpg?u=607460";
+  String jazzRelax = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9CxkUfifxfj9_vN1kBGI8LyFVJYXRZvHkpVMspUB6pjSjb8BA";
+  String noiteJazz = "https://66.media.tumblr.com/8e6808eca38486b3be3ee2dc77c5065d/tumblr_oacgur2J0F1r7c92bo1_400.jpg";
+  String flashback = "https://i.pinimg.com/originals/b7/0b/c3/b70bc32f6b8bd8e1ba39f69c78764316.jpg";
+  String baladinhaSertaneja = "https://www.deville.com.br/wp-content/uploads/2018/09/baladas.jpg";
+  String asMaisPedidas = "http://www.ocontadordecervejas.com.br/arquivos/uploads/2015/02/Captura-de-Tela-2015-02-17-%C3%A0s-20.34.13-300x230.png";
 
-  String imageAlbum = "https://i.pinimg.com/originals/66/af/f6/66aff6ec0bd8e8491a391c77c35ff978.png";
-
-
-
-
-
-
+  String imageAlbum = "";
   var blueColor = Color(0xFF090e42);
   var redColor = Color(0xFFD50000);
-
-
 
   var urlAudio = "http://radio.trt11.jus.br:8000/radiotrt11";
   var urlMusic = "http://radio.trt11.jus.br:8443/api/live-info/";
@@ -57,13 +60,55 @@ class _HomeState extends State<Home>{
   String titulo= "";
 
 
+  Album(){
+    if (titulo == 'Samba 11' ){
+      imageAlbum = Samba11;
+    }
+    else if ( titulo == 'Bailando Reggeton'){
+      imageAlbum = bailandoReggeton;
+    }
+    else if ( titulo == 'Clássicos MPB' ) {
+      imageAlbum = capaMPB;
+    }
+    else if (titulo == 'Pop Rock Nacional'){
+      imageAlbum = capaPopRocknacional;
+    }
+    else if ( titulo ==  'Corujão 11'){
+      imageAlbum = corujao;
+    }
+    else if (titulo == 'Rock  Internacional'){
+      imageAlbum = rockInternacional;
+    }
+    else if (titulo == 'O melhor do rock internacional'){
+    imageAlbum = oMelhordoRock;
+    }
+    else if (titulo == 'Miscelânia'){
+    imageAlbum = miscelania;
+    }
+    else if (titulo == 'Jazz para relaxar'){
+    imageAlbum = jazzRelax;
+    }
+    else if (titulo == 'Noite do Jazz'){
+    imageAlbum = noiteJazz;
+    }
+    else if (titulo == 'Flashback'){
+    imageAlbum = flashback;
+    }
+    else if (titulo == 'Baladinha sertanejo'){
+    imageAlbum = baladinhaSertaneja;
+    }
+    else if (titulo == 'As mais pedidas'){
+    imageAlbum = asMaisPedidas;
+    }
+  }
+
   @override
   void initState()  {
-
     StartRadio();
 
-    Timer.periodic(Duration(seconds:20), (timer) {
+    Timer.periodic(Duration(seconds:5), (timer) {
       StartRadio();
+      Album();
     });
 
   super.initState();
@@ -223,15 +268,7 @@ class _HomeState extends State<Home>{
     );
   }
 
-
-
-
-
-
-
-
   Future StartRadio() async {
-
     var response = await http.get(urlMusic);
     if(response.statusCode == 200){
       var jsonResponse = convert.jsonDecode(response.body);
@@ -240,10 +277,11 @@ class _HomeState extends State<Home>{
         proximaMusica = jsonResponse['next']['name'];
         titulo = jsonResponse['currentShow'][0]['name'];
         print("ATUALIZADO!!!!");
+
+
       });
     }
   }
-
 }
 
 
