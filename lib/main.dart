@@ -29,7 +29,6 @@ class _HomeState extends State<Home>{
 
   IjkMediaController controller = IjkMediaController();
 
-
     Timer timer;
 
   String capaMPB = "https://cdn.olhares.pt/client/files/foto/big/150/1503691.jpg";
@@ -47,6 +46,8 @@ class _HomeState extends State<Home>{
   String flashback = "https://i.pinimg.com/originals/b7/0b/c3/b70bc32f6b8bd8e1ba39f69c78764316.jpg";
   String baladinhaSertaneja = "https://www.deville.com.br/wp-content/uploads/2018/09/baladas.jpg";
   String asMaisPedidas = "http://www.ocontadordecervejas.com.br/arquivos/uploads/2015/02/Captura-de-Tela-2015-02-17-%C3%A0s-20.34.13-300x230.png";
+  String RockInternacional = "https://img.vagalume.fm/1464201608479108132/bg";
+  String Reggaeton = "https://studiosol-a.akamaihd.net/uploadfile/letras/playlists/4/b/e/d/4bedbdf7d4434a5abc00a5d1a376c1ed.jpg";
 
   String imageAlbum = "";
   var blueColor = Color(0xFF090e42);
@@ -99,6 +100,12 @@ class _HomeState extends State<Home>{
     }
     else if (titulo == 'As mais pedidas'){
     imageAlbum = asMaisPedidas;
+    }
+    else if (titulo == 'Rock Internacional'){
+      imageAlbum = RockInternacional;
+    }
+    else if (titulo == 'Reggaeton'){
+      imageAlbum = Reggaeton;
     }
   }
 
