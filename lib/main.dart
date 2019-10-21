@@ -65,7 +65,10 @@ class _HomeState extends State<Home>{
     if (titulo == 'Samba 11' ){
       imageAlbum = Samba11;
     }
-    else if ( titulo == 'Bailando Reggeton'){
+    else if (titulo == 'Manhã Com Deus'){
+      imageAlbum = manhacomDeus;
+    }
+    else if ( titulo == 'Bailando Reggaeton'){
       imageAlbum = bailandoReggeton;
     }
     else if ( titulo == 'Clássicos MPB' ) {

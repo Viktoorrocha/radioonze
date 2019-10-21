@@ -28,7 +28,7 @@ class Info extends StatelessWidget {
           Padding(padding: EdgeInsets.only(top: 45),
             child: Align(
               alignment: Alignment.topCenter,
-              child: Text("Versão 1.0 publicada em 26/09/2019"
+              child: Text("Versão 1.0 publicada em 22/10/2019"
                 , style: TextStyle(fontSize: 20),textAlign: TextAlign.justify,),
             ),)
         ] ,
