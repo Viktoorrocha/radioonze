@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:core' as prefix0;
 import 'dart:core';
 import 'package:radioonze/theme.dart';
@@ -64,6 +65,9 @@ class _HomeState extends State<Home>{
   Album(){
     if (titulo == 'Samba 11' ){
       imageAlbum = Samba11;
+    }
+    else if (titulo == 'Jazz &amp; Blues'){
+      imageAlbum = Jazz;
     }
     else if (titulo == 'Manhã Com Deus'){
       imageAlbum = manhacomDeus;
@@ -282,6 +286,8 @@ class _HomeState extends State<Home>{
     var response = await http.get(urlMusic);
     if(response.statusCode == 200){
       var jsonResponse = convert.jsonDecode(response.body);
+//    var jsonResponse = json.decode(utf8.decode(response.bodyBytes));
+
       setState(() {
         musicaAtual = jsonResponse['current']['name'];
         proximaMusica = jsonResponse['next']['name'];
